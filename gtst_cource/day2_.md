@@ -1,10 +1,10 @@
-# ** Introduction to Linux 
+#  Introduction to Linux 
   linux is kernel and open  source.
-# ** kernel 
+# kernel 
   code/program that used to meet your software and hardware and allocated some resourcus.
-# ** shall 
+# shall 
  is users communicat with th kernel by the shell.
-# ** types of shalls 
+# types of shalls 
 based on their features there are money shells.
       > sh 
       > bash
@@ -12,7 +12,7 @@ based on their features there are money shells.
       > fish
 they differ in coloring,piping,command compilation some kind of features.
 os-oprating 
-# ** types of desctop enviroment on linux 
+# types of desctop enviroment on linux 
     >mare 
     >gnome
     >KDE plasma 

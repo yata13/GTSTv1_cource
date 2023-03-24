@@ -1,103 +1,114 @@
-# Advanced Linux User!
-## Some advanced user commands
-- To change password of user
-  - sudo passwd username
-- To change user id
-  - sudo usermod -u new_id 
-- username
-  - To Delete User
-    - sudo userdel -r username
-  - To Change users on terminal
-## Sudoers file
-- The sudoers file is where you grant users elevated privileges. By default, only the root user has these privileges. But, in some cases, it may be necessary for regular users to have elevated privileges as well.
-- The sudoers file is a file Linux and Unix administrators use to allocate system rights to system users
-- The user you created doesn’t have power to use sudo as the original one. 
-- This is Because it is not Added in the sudoers file ( የSudoዎች file )
-- To access this file
-   - sudo visudo
-#### The differnce between sudo and sudores file
-- The sudo command allows non root users to run other Linux commands that would normally require super user privileges, while the sudoers file instructs the system how to handle the sudo command.
-## Linux File permission
-- Every file on linux have their own
-  - Owner 
-  - Permissions
-- There is 5 main parts on the listing
-  - Permission
-  - Owners
-  - Date
-  - Size
-  - filename
-## Ownership
-- Ownership is the owner of the file
-- This have 2 kinds
-  - User
-  - Group
-- To change the owner of file you can use the command 
-  - chown user:group filename
-## Permission
-- There are 3 types of permissions
-  - Read ( r )
-  - Write ( w )
-  - Execute ( x )
-- The folders and files are differ with the ‘d’ and ‘-’ on the beginning of the permission.
-- There still the permission have three parts.
-  - user -group-other
-- User ( u ) is power of user defined on the the ownership
-- Group (g )is power of group defined on the the ownership
-- Other ( o ) is power of other users.
-- All ( a ) is power of all which can be found in the 3 above owners 
-- Command to change permission of file
-  - chmod "option" filename
-## CHMOD command
-- This command helps to change file permission.
-- Those file permissions are read,write & execute.
-- Each of the permission have a number representations.
-  - Read -> 4 - r
-  - Write -> 2 - w
-  - Execute -> 1 - x
-- Syntax
-  - chmod "parameter" filename
-- The parameter can be in numbers and symbols
-A.Parameters in symbol
-  - chmod a+x filename -> adding execute permission for all ( chmod +x filename)
-  - chmod u+x filename -> adding execute permission for user
-  - chmod g+x filename -> adding execute permission for group
-  - chmod o+x filename -> adding execute permission for other
-  - chmod -x filename -> removing execute permission for all
-  - chmod a+rwx , u-rw , g-x , o-xw filename -> gives rwx for all and removes something from all
-B.Parameters in Number
-- chmod 621 filename -> 6 for user, 2 for group, 1 for other ( 6 = 4+2 ), 6 =rw
-- chmod 777 filename -> 7 for users, 7 for group , 7 for others (7 =4+2+1), 7 = rwx
-- '+' Is giving the permission
-- '-' Is taking / removing “ “
-## Package installation on linux
-- ON linux to install softwares you use package managers.
-  - Ex: apt,pacman,pkg,...
-- We will use debian package manager.
-- On debian the package manager i called ‘APT’ also there is called ‘dpkg’
-- Package managers are a free-software user interface that work with an online server to handle the installation and removal of software on Debian, and 
-Debian-based Linux distributions
-## The repository
--  is the site/ server kali use to upload the packages
-## Advanced package tool / apt /Apt is a free-software user interface that work with an 
-- online server to handle the installation and removal of software on Debian, and Debian-based Linux distributions.used for online and offline purpose.
-- The old ‘apt’ used as ‘apt-get’
-- Syntax
-  - sudo apt update 
-  - sudo apt search (softwarename)
-  - sudo apt install (softwarename)
-  - sudo apt remove (softwarename)
-  - sudo apt upgrade 
-  - sudo apt purge (softwarename)
-## Package dependencies 
-- A software can be built based on another program called ‘modules’
-- SO, a program to work properly, the dependencies have to be installed successfully. 
-- Those package managers install the 
-software+dependencies.
-## Dpkg ( Debian package manager )
-- Dpkg is an offline package managing program.
-- Packages on debian have an extension “.deb”
-- Syntax
-  - sudo dpkg -i (packagename)
-  - sudo dpkg -r (packagename)
-  - sudo dpkg -P (packagename)
+# *Further on Linux*
+## Linux File Hierarchy
+- Linux/UNIX have a special  file system than windows.
+- File system is a directory structure that the OS uses.
+- Windows: System files appear under the local disk C:
+- Linux: System files appear under the rootdirectory ( /)
+## File structure in detail
+### 1./ ( root )
+- Every single file and directory starts from the root directory
+- The only root user has the right to write under this directory
+- /root is the root user’s home directory, which is not the same as /
+### 2./bin - Binary executables
+- Essential command binaries that need to be available in single-user mode; for all users 
+  - e.g cat, ls, cp,pwd 
+### 3./boot - Boot loader files
+- Kernel initrd, vmlinux, grub files are located under /boot
+  - Example: initrd.img-2.6.32-24-generic, vmlinuz-2.6.32-24-generic
+### 4./dev - Essential Device files
+- These include terminal devices, usb, or any device attached to the system.
+  - Example: /dev/tty1, /dev/usbmon0
+### 5./etc - et cetera
+- Contains configuration files required by all programs.
+- This also contains startup and shutdown shell scripts used to start/stop individual programs.
+ - Example: /etc/resolv.conf, /etc/logrotate.conf.
+### 6./home - Home directory
+- Home directories for all users to store their personal files.
+  - example: /home/nathan, /home/rexder
+### 7./lib - Libraries essential for the binaries in /bin & /sbin
+- Library filenames are either ld* or lib*.so.*
+  - Example: ld-2.11.1.so, libncurses.so.5.7
+### 8./media - Mount points for removable media such as CD-ROMs
+- Temporary mount directory for removable devices.
+  - Examples, /media/cdrom for CD-ROM; /media/floppy for floppy drives; /media/cd recorder for CD writer
+### 9./mnt - Temporarily mounted file
+- Temporary mount directory where sysadmins can mount filesystems.
+### 10./opt - Optional application software packages
+- Contains add-on applications from individual vendors.
+- Add-on applications should be  installed under either /opt/ or /opt/ sub-directory.
+### 11./sbin - Essential system binaries
+- Just like /bin, /sbin also contains binary executables.
+- The linux commands located under this directory are used typically by system administrator, for system maintenance purpose.
+### 12./tmp - Temporary Files
+- Directory that contains temporary files created by system and users.
+- Files under this directory are deleted when system is rebooted.
+### 13./usr - User Utilities
+- Contains binaries, libraries, documentation, and source-code for second level programs.
+- /usr/bin contains binary files for user programs. If you can’t find a user binary under /bin, look under /usr/bin. For example: at, awk, cc, less, scp
+- /usr/sbin contains binary files for system administrators. If you can’t find a system binary under /sbin, look under /usr/sbin. For example: atd, cron, sshd, useradd, userdel
+- /usr/lib contains libraries for /usr/bin and /usr/sbin
+- /usr/src holds the Linux kernel sources, header-files and documentation.
+## Text Editors
+- Programs That user for text processing.
+- Linux command line text editors
+  - VIM
+  - Nano
+  - Emacs
+  - Neovim
+  -  ….
+- Linux Graphical Text editors
+  - Sublime
+  - Vscode
+  - Gedit
+  - Pluma
+  - …
+## VIM
+- Vim is a text editor for Unix that comes with Linux, BSD, and macOS. It is known to be fast and powerful, partly because it is a small program that can run in a terminal (although it has a graphical interface). It is mainly because it can be managed entirely without menus or a mouse with a keyboard.
+- Vim is a text editor that is an upgraded version of the Vi editor and is more compatible with Vi. The most usage of vi editors is to create a new file, edit an existing file, or just read a file. Vim editor is more useful in editing different kinds of plain text. This command is more used in editing programs.
+- Vim is by default on command mode when you open it.
+- To get on insert mode you have to type ‘i’
+- vim file
+#### Inside Command mode you can
+- Save ->  :w +
+- Save & quit -> :wq
+- Force Quit & Save
+- Undo ->:undo + or :u
+- Execute bash commands
+## NANO
+- GNU nano  is a simple terminal-based text editor. Though not as powerful as Emacs or Vim, it is easy to learn and use. Nano is ideal for making small changes to existing configuration files or for writing short plain text files.
+- is a user-friendly, free and open-source text editor that usually comes pre-installed in modern Linux systems.
+- nano filename
+#### Saving Exiting & Undo_redo
+- Ctrl + S - save
+- Alt + U - Undo 
+- Alt + E - Redo
+- Ctrl + X - Exit
+- Paste,Copy & paste all over the linux is
+- Ctrl+shift+C - copy
+- Ctrl+shift+X - Cut
+- Ctrl+shift+V - Paste 
+- the ^ is equal to ‘Ctrl’
+## Linux User Management
+- On Computer system, person who uses the computer is called “user”
+- Every Users have Group.
+- Users have their own file & applications.
+- To know our name on linux -> “ whoami “
+-  Those users have power/privilege.
+- On linux there's 2 kinds users.
+  - Root id = 0
+  - Normal User id start with 1-999
+-The root user have the power to do everything on linux , but if users want to have a root access they add sudo in front of the command .
+- SUDO = Superuser do , used to pass permission denied
+## Creating Users
+- On linux, to create users you can use the following commands
+  - Useradd -> simple 
+  - Adduser -> Detailed
+- Useradd command
+  - sudo useradd username
+- Adduser command
+  - sudo adduser username
+- The User files are stored inside /etc/passwd
+- The User password are stored inside /etc/shadow
+- When you create a user it creates a group with that name.
+## To access root user
+- command: is sudo su
